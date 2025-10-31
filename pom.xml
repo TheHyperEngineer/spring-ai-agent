@@ -10,11 +10,11 @@
 
     <packaging>pom</packaging>
 
-    <name>Spring AI Aggentic Patterns</name>
+    <name>Spring AI Agentic Patterns</name>
     <description>Spring AI demos for building Agentic Patterns</description>
 
     <modules>
-
+        <module>chain-workflow</module>
     </modules>
 
 
