@@ -2,6 +2,7 @@ package engineer.hyper.agentic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,5 +26,10 @@ public class ChainWorkFlowController {
     @GetMapping("/chain-workflow")
     public String chainWorkflow() {
         return chainWorkflow.chain(report);
+    }
+
+    @GetMapping("/ask-question")
+    public String askQuestion(@RequestParam String question) {
+        return chainWorkflow.question(question);
     }
 }

@@ -1,11 +1,13 @@
 package engineer.hyper.agentic;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.messages.SystemMessage;
+import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatModel;
+import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.ollama.api.OllamaApi;
 import org.springframework.ai.ollama.management.ModelManagementOptions;
-import org.springframework.ai.ollama.management.OllamaModelManager;
 import org.springframework.stereotype.Component;
 
 /**
@@ -150,5 +152,21 @@ public class ChainWorkflow {
         }
 
         return response;
+    }
+
+    public String question(String question) {
+        String promptQuestion
+                = String.format(
+                "You are a science teacher for teenagers. " +
+                        "Your name is Dexter.You explain science concepts in a simple, concise and direct way. " +
+                        "Student is asking about {%s}. Answer it.", question);
+
+        SystemMessage systemMessage = SystemMessage.builder().text("""
+                You are a science teacher for teenagers. Your name is Dexter.
+                You explain science concepts in a simple, concise and direct way.
+                """).build();
+        UserMessage userMessage = UserMessage.builder().text(question).build();
+        Prompt prompt = Prompt.builder().messages(systemMessage, userMessage).build();
+        return chatClient.prompt(prompt).call().content();
     }
 }

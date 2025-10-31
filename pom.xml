@@ -15,6 +15,7 @@
 
     <modules>
         <module>chain-workflow</module>
+        <module>evaluator-optimizer</module>
     </modules>
 
 
