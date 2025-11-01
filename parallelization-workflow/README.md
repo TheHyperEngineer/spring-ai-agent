@@ -1,6 +1,8 @@
 # Parallelization Workflow Pattern with Spring AI
 
-This project demonstrates the implementation of the Parallelization Workflow pattern using Spring AI, enabling efficient concurrent processing of multiple Large Language Model (LLM) operations. The pattern is particularly useful for scenarios requiring parallel execution of LLM calls with automated output aggregation.
+This project demonstrates the implementation of the Parallelization Workflow pattern using Spring AI, enabling efficient
+concurrent processing of multiple Large Language Model (LLM) operations. The pattern is particularly useful for
+scenarios requiring parallel execution of LLM calls with automated output aggregation.
 
 ![Parallelization Workflow](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F406bb032ca007fd1624f261af717d70e6ca86286-2401x1000.png&w=3840&q=75)
 
@@ -38,19 +40,20 @@ Here's a basic example of using the Parallelization Workflow:
 
 ```java
 List<String> parallelResponse = new ParallelizationlWorkflow(chatClient)
-    .parallel(
-        "Analyze how market changes will impact this stakeholder group.",
-        List.of(
-            "Customers: ...",
-            "Employees: ...",
-            "Investors: ...",
-            "Suppliers: ..."
-        ),
-        4
-    );
+        .parallel(
+                "Analyze how market changes will impact this stakeholder group.",
+                List.of(
+                        "Customers: ...",
+                        "Employees: ...",
+                        "Investors: ...",
+                        "Suppliers: ..."
+                ),
+                4
+        );
 ```
 
-This example demonstrates parallel processing of stakeholder analysis, where each stakeholder group is analyzed concurrently.
+This example demonstrates parallel processing of stakeholder analysis, where each stakeholder group is analyzed
+concurrently.
 
 ## Implementation Details
 

@@ -18,6 +18,7 @@
         <module>evaluator-optimizer</module>
         <module>orchestrator-workers</module>
         <module>parallelization-workflow</module>
+        <module>routing-workflow</module>
     </modules>
 
 

@@ -1,12 +1,15 @@
 # Evaluator-Optimizer Pattern
 
-This project demonstrates the Evaluator-Optimizer pattern for building effective LLM-based systems, as described in [Anthropic's research on building effective agents](https://www.anthropic.com/research/building-effective-agents).
+This project demonstrates the Evaluator-Optimizer pattern for building effective LLM-based systems, as described
+in [Anthropic's research on building effective agents](https://www.anthropic.com/research/building-effective-agents).
 
 ![Evaluator-Optimizer](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F14f51e6406ccb29e695da48b17017e899a6119c7-2401x1000.png&w=3840&q=75)
 
 ## Overview
 
-The Evaluator-Optimizer pattern implements a dual-LLM process where one model generates responses while another provides evaluation and feedback in an iterative loop, similar to a human writer's iterative refinement process. The pattern consists of two main components:
+The Evaluator-Optimizer pattern implements a dual-LLM process where one model generates responses while another provides
+evaluation and feedback in an iterative loop, similar to a human writer's iterative refinement process. The pattern
+consists of two main components:
 
 - **Generator LLM**: Produces initial responses and refines them based on feedback
 - **Evaluator LLM**: Analyzes responses and provides detailed feedback for improvement
@@ -52,10 +55,10 @@ public class EvaluatorOptimizer {
     public RefinedResponse loop(String task) {
         // 1. Generate initial solution
         Generation generation = generate(task, context);
-        
+
         // 2. Evaluate the solution
         EvaluationResponse evaluation = evaluate(generation.response(), task);
-        
+
         // 3. If PASS, return solution
         // 4. If NEEDS_IMPROVEMENT, incorporate feedback and generate new solution
         // 5. Repeat until satisfactory
@@ -68,16 +71,23 @@ public class EvaluatorOptimizer {
 
 ```java
 ChatClient chatClient = // ... initialize chat client
-EvaluatorOptimizer agent = new EvaluatorOptimizer(chatClient);
+        EvaluatorOptimizer
+agent =new
+
+EvaluatorOptimizer(chatClient);
 
 // Process a task
 RefinedResponse response = agent.loop(
-    "Create a Java class implementing a thread-safe counter"
+        "Create a Java class implementing a thread-safe counter"
 );
 
 // Access results
-System.out.println("Final Solution: " + response.solution());
-System.out.println("Evolution: " + response.chainOfThought());
+System.out.
+
+println("Final Solution: "+response.solution());
+        System.out.
+
+println("Evolution: "+response.chainOfThought());
 ```
 
 ## Customization
@@ -85,12 +95,15 @@ System.out.println("Evolution: " + response.chainOfThought());
 The pattern can be customized through:
 
 1. **Custom Prompts**: Provide specialized prompts for generator and evaluator
+
 ```java
-agent = new EvaluatorOptimizer(
-    chatClient,
-    customGeneratorPrompt,
-    customEvaluatorPrompt
-);
+agent =new
+
+EvaluatorOptimizer(
+        chatClient,
+        customGeneratorPrompt,
+        customEvaluatorPrompt
+        );
 ```
 
 2. **Default Templates**: Modify the default prompts for common use cases
@@ -100,6 +113,7 @@ agent = new EvaluatorOptimizer(
 ## Response Formats
 
 ### Generation Response
+
 ```json
 {
     "thoughts": "Brief description of approach",
@@ -108,10 +122,11 @@ agent = new EvaluatorOptimizer(
 ```
 
 ### Evaluation Response
+
 ```json
 {
-    "evaluation": "PASS|NEEDS_IMPROVEMENT|FAIL",
-    "feedback": "Detailed feedback for improvement"
+  "evaluation": "PASS|NEEDS_IMPROVEMENT|FAIL",
+  "feedback": "Detailed feedback for improvement"
 }
 ```
 
