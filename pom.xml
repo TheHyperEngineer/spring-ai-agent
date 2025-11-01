@@ -21,6 +21,7 @@
         <module>routing-workflow</module>
         <module>recursive-advisor</module>
         <module>reflection-agent</module>
+        <module>agent-with-memory</module>
     </modules>
 
 
