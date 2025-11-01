@@ -1,5 +1,6 @@
 package engineer.hyper.agentic.controller;
 
+import engineer.hyper.agentic.memory.PersistentMessageWindowChatMemory;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AgentController {
 
     private final ChatClient chatClient;
-    private final ChatMemory chatMemory;
+    private final PersistentMessageWindowChatMemory chatMemory;
 
-    public AgentController(ChatClient.Builder builder, ChatMemory chatMemory) {
+    public AgentController(ChatClient.Builder builder, PersistentMessageWindowChatMemory chatMemory) {
         this.chatClient = builder.build();
         this.chatMemory = chatMemory;
     }
