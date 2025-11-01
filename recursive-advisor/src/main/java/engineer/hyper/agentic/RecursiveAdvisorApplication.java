@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RoutingWorkflowApplication {
+public class RecursiveAdvisorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RoutingWorkflowApplication.class, args);
+        SpringApplication.run(RecursiveAdvisorApplication.class, args);
     }
 }

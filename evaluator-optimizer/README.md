@@ -116,8 +116,8 @@ EvaluatorOptimizer(
 
 ```json
 {
-    "thoughts": "Brief description of approach",
-    "response": "Actual solution content"
+  "thoughts": "Brief description of approach",
+  "response": "Actual solution content"
 }
 ```
 
