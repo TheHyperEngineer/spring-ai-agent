@@ -17,6 +17,7 @@
         <module>chain-workflow</module>
         <module>evaluator-optimizer</module>
         <module>orchestrator-workers</module>
+        <module>parallelization-workflow</module>
     </modules>
 
 

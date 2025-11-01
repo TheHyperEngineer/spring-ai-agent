@@ -10,10 +10,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>engineer.hyper.spring.ai</groupId>
-    <artifactId>evaluator-optimizer</artifactId>
+    <artifactId>parallelization-workflow</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>evaluator-optimizer</name>
-    <description>Demo project for Spring Boot evaluator-optimizer</description>
+    <name>parallelization-workflow</name>
+    <description>Demo project for Spring Boot parallelization-workflow</description>
     <properties>
         <java.version>25</java.version>
         <spring-ai.version>${spring-ai-bom.version}</spring-ai.version>
@@ -25,6 +25,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-starter-model-openai</artifactId>

@@ -1,14 +1,13 @@
-package engineer.hyper.agentic;
+package engineer.hyper.agentic.service;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
-import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.ollama.OllamaChatModel;
-import org.springframework.ai.ollama.api.OllamaApi;
-import org.springframework.ai.ollama.management.ModelManagementOptions;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import static engineer.hyper.agentic.props.Prompt.DEFAULT_SYSTEM_PROMPTS;
 
 /**
  * Implements the Prompt Chaining workflow pattern for decomposing complex tasks
@@ -38,49 +37,13 @@ import org.springframework.stereotype.Component;
  * "https://www.anthropic.com/research/building-effective-agents">Building
  * Effective Agents</a>
  */
-@Component
+@Service
 public class ChainWorkflow {
 
-    /**
-     * Array of system prompts that define the transformation steps in the chain.
-     * Each prompt acts as a gate that validates and transforms the output before
-     * proceeding to the next step.
-     */
-    private static final String[] DEFAULT_SYSTEM_PROMPTS = {
+    @Autowired
+    private ChatClient chatClient;
 
-            // Step 1
-            """
-					Extract only the numerical values and their associated metrics from the text.
-					Format each as'value: metric' on a new line.
-					Example format:
-					92: customer satisfaction
-					45%: revenue growth""",
-            // Step 2
-            """
-					Convert all numerical values to percentages where possible.
-					If not a percentage or points, convert to decimal (e.g., 92 points -> 92%).
-					Keep one number per line.
-					Example format:
-					92%: customer satisfaction
-					45%: revenue growth""",
-            // Step 3
-            """
-					Sort all lines in descending order by numerical value.
-					Keep the format 'value: metric' on each line.
-					Example:
-					92%: customer satisfaction
-					87%: employee satisfaction""",
-            // Step 4
-            """
-					Format the sorted data as a markdown table with columns:
-					| Metric | Value |
-					|:--|--:|
-					| Customer Satisfaction | 92% | """
-    };
-
-    private final ChatClient chatClient;
-
-    private final String[] systemPrompts;
+    private final String[] systemPrompts = DEFAULT_SYSTEM_PROMPTS;
 
     /**
      * Constructs a new instance of the Prompt Chaining workflow with the specified
@@ -88,7 +51,7 @@ public class ChainWorkflow {
      *
      * @param chatClient the Spring AI chat client used to make LLM calls
      */
-    public ChainWorkflow() {
+/*    public ChainWorkflow() {
         OllamaApi ollamaApi
                 = OllamaApi.builder()
                 .baseUrl("http://localhost:11434")
@@ -106,20 +69,7 @@ public class ChainWorkflow {
         ChatClient.Builder builder = ChatClient.builder(chatModel);
 
         this(builder.build(), DEFAULT_SYSTEM_PROMPTS);
-    }
-
-    /**
-     * Constructs a new instance of the Prompt Chaining workflow with the specified
-     * chat client and system prompts.
-     *
-     * @param chatClient    the Spring AI chat client used to make LLM calls
-     * @param systemPrompts the system prompts that define the transformation steps
-     *                      in the chain
-     */
-    public ChainWorkflow(ChatClient chatClient, String[] systemPrompts) {
-        this.chatClient = chatClient;
-        this.systemPrompts = systemPrompts;
-    }
+    }*/
 
     /**
      * Executes the prompt chaining workflow by processing the input text through
@@ -155,11 +105,6 @@ public class ChainWorkflow {
     }
 
     public String question(String question) {
-        String promptQuestion
-                = String.format(
-                "You are a science teacher for teenagers. " +
-                        "Your name is Dexter.You explain science concepts in a simple, concise and direct way. " +
-                        "Student is asking about {%s}. Answer it.", question);
 
         SystemMessage systemMessage = SystemMessage.builder().text("""
                 You are a science teacher for teenagers. Your name is Dexter.
